@@ -9,9 +9,11 @@ var app = http.createServer(function(request,response){
 
 
     console.log(url.parse(_url, true).pathname);
+    console.log("./data/${queryData.id}");
+    console.log(queryData.id);
     if(pathname === '/'){
       if(queryData.id === undefined){
-        fs.readFile('data/${queryData.id}', 'utf8', function(err, description){
+        fs.readFile('./data/${queryData.id}', 'utf8', function(err, description){
           var title = 'Welcome';
           var description = 'Hello, Node.js';
           var template = `
@@ -37,7 +39,7 @@ var app = http.createServer(function(request,response){
           response.end(template);
         });
       }else{
-        fs.readFile('data/${queryData.id}', 'utf8', function(err, description){
+        fs.readFile('./data/${queryData.id}', 'utf8', function(err, description){
           var title = queryData.id;
           var template = `
           <!doctype html>
